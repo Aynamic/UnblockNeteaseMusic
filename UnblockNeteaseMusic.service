@@ -1,0 +1,16 @@
+[Unit]
+Description=UnblockNeteaseMusic
+After=NetworkManager-wait-online.service
+Wants=NetworkManager-wait-online.service
+
+[Service]
+Type=simple
+PIDFile=/run/UnblockNeteaseMusic.pid
+ExecStart=/bin/unblockneteasemusic -a 127.0.0.1 -p 80:443 -f 59.111.181.35 
+RestartPreventExitStatus=23
+RestartSec=10
+Restart=always
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target
